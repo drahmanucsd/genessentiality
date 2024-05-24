@@ -1,19 +1,16 @@
 import pandas as pd
 
 # Specify the relative path to the Excel file
-tgp = "ecDNA Target genes.xlsx"
-<<<<<<< HEAD
+gene_list = "ecDNA Target genes.xlsx"
 raw_data = "aggregated_results.csv"
 file_path = open("match.tsv","w")
-=======
->>>>>>> 54a5d22f9a5aa08363ca0f2f98a43e2dfe44425f
 
 # Read the Excel file into a DataFrame
-tgdf = pd.read_excel(tgp)
+gene_list_df = pd.read_excel(gene_list)
 raw_data_df = pd.read_csv(raw_data)
 
 # Assuming the third column index is 2 (indexing starts from 0)
-gene_column = tgdf.iloc[:, 2]
+gene_column = gene_list_df.iloc[:, 2]
 sample_col = raw_data_df.iloc[:, 1] # sample col
 calss_col = raw_data_df.iloc[:, 4] # class col
 gene_col = raw_data_df.iloc[:, 22] # gene col for the smaple
