@@ -2,30 +2,35 @@ import pandas as pd
 
 # Specify the relative path to the Excel file
 tgp = "ecDNA Target genes.xlsx"
-arp = "aggregated_results.csv"
-fp = open("match.txt","w")
+raw_data = "aggregated_results.csv"
+file_path = open("match.tsv","w")
 
 # Read the Excel file into a DataFrame
 tgdf = pd.read_excel(tgp)
-ardf = pd.read_csv(arp)
+raw_data_df = pd.read_csv(raw_data)
 
 # Assuming the third column index is 2 (indexing starts from 0)
 gene_column = tgdf.iloc[:, 2]
-sc = ardf.iloc[:, 1] # sample col
-cc = ardf.iloc[:, 4] # class col
-sg = ardf.iloc[:, 22] # gene col for the smaple
+sample_col = raw_data_df.iloc[:, 1] # sample col
+calss_col = raw_data_df.iloc[:, 4] # class col
+gene_col = raw_data_df.iloc[:, 22] # gene col for the smaple
 
-# Extract the text before the character "|"
-gn = gene_column.str.split('|').str[0].tolist()
-for i in range(len(gn)):
-    for j in range(len(sc)):
-        if gn[i] in sg[j]:
-            if cc[j] == "ecDNA":
-                fp.write(gn[i] + "\t" + sc[j] + "\t" + "pos\n")
+# Extract the text before the character "|" which contains the gene name
+gene_name = gene_column.str.split('|').str[0].tolist()
+
+for i in range(len(gene_name)):
+    for j in range(len(sample_col)):
+        if gene_name[i] in gene_col[j]:
+
+            if calss_col[j] == "ecDNA":
+                file_path.write(gene_name[i] + "\t" + sample_col[j] + "\t" + "pos\n")
             else:
-                fp.write(gn[i] + "\t" + sc[j] + "\t" + "neg\n")
+                file_path.write(gene_name[i] + "\t" + sample_col[j] + "\t" + "neg\n")
 
-fp.close()
+file_path.close()
+
+
+
 # # Convert the Series to a single string with space-separated values
 # extracted_text_str = ' '.join(extracted_text.dropna().astype(str))
 
