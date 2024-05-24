@@ -1,5 +1,9 @@
 # genessentiality
 Using Depmap to test the essentiallity of genes impact on different cancer cell lines
+
+Data based on this paper: 
+https://www.biorxiv.org/content/10.1101/2023.04.24.537925v1
+
 ## Pipeline Description:
 ### Obtaining data
 Given a list of list of gene data we extracted and filtered the particular genes ("~/filter.py") of interest from this file "~/ecDNA Target genes.xlsx". This extracted data further needed manual cleaning in the form of matching aliases with the primary name associated with a gene on Depmap "~/extracted_text.txt".
