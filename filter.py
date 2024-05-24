@@ -3,7 +3,7 @@ import pandas as pd
 # Specify the relative path to the Excel file
 tgp = "ecDNA Target genes.xlsx"
 arp = "aggregated_results.csv"
-fp = open("match.txt","w")
+fp = open("match.tsv","w")
 
 # Read the Excel file into a DataFrame
 tgdf = pd.read_excel(tgp)
