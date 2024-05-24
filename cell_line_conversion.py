@@ -19,7 +19,7 @@ for cell in match_cells:
 
 # Save the matched rows to a new CSV file (optional)
 matched_ids = matched_rows.iloc[:,:1]
-concatenated_df = pd.concat([match_df, matched_ids], axis=0, ignore_index=True)
+concatenated_df = pd.concat([match_df, matched_ids], axis=1)
 headers = ['Column1', 'Column2',"c","c"]
 concatenated_df.columns = headers
 matched_ids.to_csv('matched_ids.csv', index=False)
