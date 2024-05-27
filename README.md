@@ -10,22 +10,26 @@ https://www.biorxiv.org/content/10.1101/2023.04.24.537925v1
 
 ## Repository Overview:
 
-### Scripts
+***Scripts***
 Houses all python scripts that were used to manipulate the gene lists, and obtain DP cell lines for us to input into the [DepMap download page](https://depmap.org/portal/download/custom/).
 
-#### gene_name_dict_matching.py
-* This is a script used to 
+`gene_name_dict_matching.py`
+* This is a script used to convert some of the gene names from the original list, into their DepMap ID equivalents, since some gene names give input errors when entered in DepMap
+* The script first opens the original gene names from `og_gene_names.txt`, their equivalent DepMap gene names are stored in `DP_gene_names.txt` and adds both of these to a list
+* The `error_list` is a list of genes that resulted in input errors from DepMap because their name is not recognized
+* The script iterates through the original names and the names that resulted in errors and finds these genes from `error_list` and replaces them with the DepMap associated name
+* The new list of gene names is saved to `final_DP_gene_inputs.txt` which can be found in the DP Inputs folder
 
-### Output files
+***Output files***
 Houses all output files from different scripts
 
-## Initial datasets
+***Initial datasets***
 Contains `aggregated_results.csv` which was the total results data taken from the paper, and `ecDNA Targer genes.xlsx`, which had our initial gene list in it.
 
-### Intermediate data
+***Intermediate data***
 Houses DepMap Broad ID's for cell lines, and our extracted gene_lists
 
-### DP Inputs
+***DP Inputs***
 Contains all of the input data that we fed DepMap to obtain essentiality scores, includes `DP_cell_line_ID.csv` which is the converted cell lines from DepMap, and `final_DP_gene_inputs.txt`, which is the list of genes that was filtered for key errors using `gene_name_dict_matching.py`
 
 ## Pipeline Description:
