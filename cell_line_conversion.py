@@ -20,9 +20,11 @@ for cell in match_cells:
 # Save the matched rows to a new CSV file (optional)
 matched_ids = matched_rows.iloc[:,:1]
 concatenated_df = pd.concat([match_df, matched_ids], axis=1)
-headers = ['Gene Id', 'Cell Line',"ecDNA Content","Cell Line ID"]
+headers = ['Gene Id', 'Cell Line',"ecDNA Content","DP Cell Line ID"]
 concatenated_df.columns = headers
 matched_ids.to_csv('matched_ids.csv', index=False)
 concatenated_df.to_csv('match.csv', index=False )
 
 print("Matching rows have been saved to 'matched_rows.csv'")
+print(concatenated_df['DP Cell Line ID'])
+#concatenated_df['DP Cell Line ID'].to_csv('DP_cell_line_ID.csv', sep = ',')
