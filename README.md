@@ -1,3 +1,7 @@
+![project_status](https://img.shields.io/badge/project%20status-stable-green)
+![python](https://img.shields.io/badge/python-3.9.6-green)
+![pandas](https://img.shields.io/badge/pandas-2.2.2-white)
+
 # genessentiality
 Using Depmap to test the essentiallity of genes impact on different cancer cell lines
 
