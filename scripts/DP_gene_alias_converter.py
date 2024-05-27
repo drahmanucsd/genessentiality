@@ -2,12 +2,12 @@ import pandas as pd
 
 #gene_names = pd.read_csv("og_gene_names", sep = ' ')
 og_gene_list = []
-with open("og_gene_names.txt", 'r') as f:
+with open("../Intermediate data/og_gene_names.txt", 'r') as f:
     for line in f:
         og_gene_list = line.split(' ')
 
 dp_alias = []
-with open("DP_gene_names.txt", 'r') as f:
+with open("../Intermediate data/DP_gene_names.txt", 'r') as f:
     for line in f:
         dp_alias = line.split(' ')
 print(len(dp_alias), len(og_gene_list))
