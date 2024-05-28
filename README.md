@@ -13,12 +13,16 @@ https://www.biorxiv.org/content/10.1101/2023.04.24.537925v1
 ***Scripts***
 Houses all python scripts that were used to manipulate the gene lists, and obtain DP cell lines for us to input into the [DepMap download page](https://depmap.org/portal/download/custom/).
 
-`gene_name_dict_matching.py`
+`DP_gene_alias_converter.py`
 * This is a script used to convert some of the gene names from the original list, into their DepMap ID equivalents, since some gene names give input errors when entered in DepMap
 * The script first opens the original gene names from `og_gene_names.txt`, their equivalent DepMap gene names are stored in `DP_gene_names.txt` and adds both of these to a list
 * The `error_list` is a list of genes that resulted in input errors from DepMap because their name is not recognized
 * The script iterates through the original names and the names that resulted in errors and finds these genes from `error_list` and replaces them with the DepMap associated name
 * The new list of gene names is saved to `final_DP_gene_inputs.txt` which can be found in the DP Inputs folder
+`visual.py`
+- This is a script that takes the data from "CRISPR_(DepMap_Public_23Q4+Score,_Chronos)_subsetted.csv" and generates the png graphs stored in folder "\~/Plots". 
+`filter.py`
+- This is a  script that takes in data from "./Raw_Data" and pulls out the relevant data needed for analysis. It first extracts the list of ecDNA that are the focus of analysis. These genes are then matched to cell lines from the "~/Initial Datasets/aggregated_results.csv". This allows us to then generate a positive and negative value for each cell line as well and associate that with a gene. We then generate a file of all the cell lines observed into a single column csv which is one of the inputs for Depmap. The other input format for Depmap is also generated which is a space seperated list of all ecDNA observed. The 3d and final output is csv file with all cell lines, their associated depmap id, ecDNA, and pos/neg which is stored in "./output_files/match.csv"
 
 ***Output files***
 Houses all output files from different scripts
@@ -34,12 +38,8 @@ Contains all of the input data that we fed DepMap to obtain essentiality scores,
 
 ## Pipeline Description:
 ### Obtaining data
-Given a list of list of gene data we extracted and filtered the particular genes ("~/filter.py") of interest from this file "~/ecDNA Target genes.xlsx". This extracted data further needed manual cleaning in the form of matching aliases with the primary name associated with a gene on Depmap "~/extracted_text.txt".
-
-This space seperated list is then used to generate a subdataset which can be downloaded from depmap's [download page](https://depmap.org/portal/download/custom/). 
-### Analyzing cell line data
-### Plotting
-## File Descriptions:
-### filter.py
-### ecDNA Target genes.xlsx
-### extracted_text.txt
+Given the list of target genes "./Initial datasets/ecDNA Target genes.xlsx" We were able to extract the list into a space seperated file "./Intermediate data/og_gene_names.txt".
+### Data Manipulation
+"./scripts/filter.py" generates the file "./output files/matched_ids.csv" which contains a list of the particular cell lines of interest from "aggregated_results.csv" and is also used as input for the depmap download. This space seperated list is then used to generate a subdataset which can be downloaded from depmap's [download page](https://depmap.org/portal/download/custom/).  However many of the genes in this list were aliases and not the primary name used by depmap, and had to be manually converted into the primary depmap name which can be found in file "./Intermediate data/DP_gene_names.txt".
+### Visualization
+Once the data is downloaded, the gene names are converted back into their alias form and then "./scripts/visual.py" is used to generate the graph plots of the result data. 
