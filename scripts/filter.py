@@ -32,14 +32,18 @@ for i in range(len(gene_name)):
 match_df = pd.DataFrame(match_data, columns=['Gene Id', 'Cell Line', 'ecDNA Content'])
 match_cells = match_df['Cell Line']
 depmap_cells = depmap_df.iloc[:, 1]
-
 # Create a new DataFrame to store matching rows
 matched_rows = pd.DataFrame()
 
 # Find matches
 for cell in match_cells:
     matched_row = depmap_df[depmap_cells == cell]
-    if not matched_row.empty:
+    if matched_row.empty:
+        # Creating a dummy row with NaN values
+        dummy_row = pd.DataFrame([{'dummy_column': None}])
+        # Appending the dummy row to matched_rows
+        matched_rows = pd.concat([matched_rows, dummy_row], ignore_index=True)
+    else:
         matched_rows = pd.concat([matched_rows, matched_row], ignore_index=True)
 
 matched_ids = matched_rows.iloc[:, :1]
