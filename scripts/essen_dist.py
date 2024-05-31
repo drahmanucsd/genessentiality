@@ -11,7 +11,7 @@ r, c = sc_df.shape
 for i in range(1, c):
     gene = sc_df.columns[i]
     scs = sc_df[gene].dropna().tolist()
-    
+
     # Calculate mean and standard deviation
     mean, std, med = stats.mean(scs), stats.stdev(scs), stats.median(scs)
     
@@ -23,5 +23,5 @@ for i in range(1, c):
     plt.ylabel("Frequency")
     
     # Save the plot
-    plt.savefig("Plots/" + gene + ".png", format='png')
+    plt.savefig("Essentiality_Plots/" + gene + ".png", format='png')
     plt.clf()
