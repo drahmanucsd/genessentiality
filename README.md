@@ -8,6 +8,9 @@ Using Depmap to test the essentiallity of genes impact on different cancer cell 
 Data based on this paper: 
 https://www.biorxiv.org/content/10.1101/2023.04.24.537925v1
 
+Full text:
+https://www.biorxiv.org/content/10.1101/2023.04.24.537925v1.full.pdf
+
 ## Repository Overview:
 
 ***Scripts***
@@ -43,3 +46,24 @@ Given the list of target genes "./Initial datasets/ecDNA Target genes.xlsx" We w
 "./scripts/filter.py" generates the file "./output files/matched_ids.csv" which contains a list of the particular cell lines of interest from "aggregated_results.csv" and is also used as input for the depmap download. This space seperated list is then used to generate a subdataset which can be downloaded from depmap's [download page](https://depmap.org/portal/download/custom/).  However many of the genes in this list were aliases and not the primary name used by depmap, and had to be manually converted into the primary depmap name which can be found in file "./Intermediate data/DP_gene_names.txt".
 ### Visualization
 Once the data is downloaded, the gene names are converted back into their alias form and then "./scripts/visual.py" is used to generate the graph plots of the result data. 
+
+
+
+# Notes
+"Notably, among the 354 clusters, only 2 clusters (with 14 total genes) did not contain any
+Core genes" (Page 5)
+
+"While not necessarily increasing the predictive value,
+CSTF1 is also a proto-oncogene involved in aberrant alternative splicing events13" (Page 6)
+
+" Importantly, the total number of genes per
+cluster was also small (Fig. 1d), with only 7 of 354 clusters carrying more than 10 genes. This
+suggests that genes involved in ecDNA maintenance have specific roles that cannot be
+accomplished by multiple other genes." (Page 6)
+
+"We assumed that genes that were persistently over-expressed or under-expressed in ecDNA(+)
+samples relative to ecDNA(-) samples were more likely to be involved in ecDNA biogenesis or
+maintenance, or in mediating the cellular response to the presence of ecDNA" (Page 4)
+
+Page 10 talkes about cell cluster functions
+
