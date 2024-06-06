@@ -23,7 +23,7 @@ total_data = pd.merge(scores[['Gene', 'Median scores']], pvals[['Gene', 'pval', 
 
 total_data['- log10 pval'] = np.log10(total_data['pval'])*-1
 
-print(total_data.head(5))
+#print(total_data.head(5))
 
 #creating separate df for sig, non sig, and essential genes
 bot = total_data[(total_data['Median scores'] > essen_thresh)&(total_data['- log10 pval']<pval_thresh) | ((total_data['Median scores'] > essen_thresh)) | ((total_data['- log10 pval'] < pval_thresh))]
@@ -40,6 +40,10 @@ for idx, row in top.iterrows():
 
 for idx, row in neg.iterrows():
     plt.text(row['Median scores'], row['- log10 pval'], row['Gene'], fontsize=6, color='red')
+
+top = top.sort_values(by='ecDNA dominance')
+print(top)
+top.to_csv("output files/top_genes_ranked_pval_score.csv")
 #legend
 plt.axhline(pval_thresh,color="grey",linestyle="--")
 plt.axvline(essen_thresh,color="grey",linestyle="--")
