@@ -35,10 +35,12 @@ for i in range(1, c):
 score_dist ['Genes'] = genes
 score_dist['Median scores'] = meds
 
-score_dist = score_dist[score_dist['Median scores'] < 0]
+score_dist_filt = score_dist[score_dist['Median scores'] < 0]
 
-score_dist = score_dist.sort_values(by = 'Median scores')
+score_dist_filt = score_dist_filt.sort_values(by = 'Median scores')
 
-print(score_dist.head(5))
+print(score_dist_filt.head(5))
 
-score_dist.to_csv("output files/ranked_scores.csv", sep = '\t')
+score_dist.to_csv("output files/total_scores.csv", sep = "\t")
+
+score_dist_filt.to_csv("output files/ranked_scores.csv", sep = '\t')

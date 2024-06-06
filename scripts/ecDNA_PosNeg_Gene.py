@@ -34,5 +34,6 @@ for i in range(1,c):
 
 pvals.sort(key = lambda x:x[1])
 with open("output files/PosNeg_pvals.csv","w") as fp:
+    fp.write(f"Gene,pval,ecDNA dominace\n")
     for g,p,e in pvals:
         fp.write(f"{g},{p},{e}\n")
